@@ -1,4 +1,5 @@
 import shop from '../../api/store'
+import Tools from '../../common/Tools'
 
 // initial state
 const state = () => ({
@@ -21,7 +22,7 @@ const mutations = {
 const actions = {
   getAllCompanies ({ commit }) {
     shop.getCompanies(companies => {
-      commit('setCompanies', companies.sort())
+      commit('setCompanies', Tools.sortedData(companies, 'name', true))
     })
   }
 }
