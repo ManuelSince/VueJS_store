@@ -23,7 +23,6 @@ export default new Vuex.Store({
         }
       })
       const index = state.navitems.findIndex(x => x.name === payload.name)
-      console.log(state.navitems[index])
       state.navitems[index].isActive = true
     },
     isCompanies: (state, payload) => {
