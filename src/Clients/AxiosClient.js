@@ -13,7 +13,7 @@ class AxiosClient {
     stringifyParams(params) {
         let list= []
         Object.keys(params).forEach((key) => {
-            list.push(`${key}=${params[key]}`)
+            list.push(`${key}=${encodeURIComponent(params[key])}`)
         })
         return `Filters=${list.join('&')}`
     }
@@ -27,3 +27,4 @@ a = new AxiosClient('http://wwww.macguyver', 3006, '', '')
 const filters = {name: 'Tesla', earning: 40999, office : 'london'}
 const res = a.get('companies', filters)
 console.log(res)
+

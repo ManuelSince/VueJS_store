@@ -21,5 +21,18 @@ export default {
         }
       })
     }
+  },
+  objectIterator: function (object) {
+    return false
+  },
+  filtersCleaner: function (filters) {
+    Object.keys(filters).forEach(key => {
+      return filters[key] !== '' || typeof filters[key] !== 'object'
+    })
+  },
+  compose: (...fns) => (x) => {
+    return fns.rediuce((acc, f) => {
+      return f(acc)
+    }, x)
   }
 }

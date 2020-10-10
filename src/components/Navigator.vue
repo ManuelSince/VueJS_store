@@ -36,7 +36,11 @@ export default {
     a{
       text-decoration: none;
     }
-
+  }
+  li:hover{
+    a{
+      color: white;
+    }
   }
   .title{
     font-size:0.8em;
@@ -65,5 +69,8 @@ a {
 }
 .active {
   background-color: black;
+  a{
+    color: white;
+  }
 }
 </style>

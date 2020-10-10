@@ -1,16 +1,7 @@
 <template>
     <div class="company-cells">
-        <div class="grid-body"  @click="check(company.name)">
-            <div class="cell-item">{{ company.name }}</div>
-            <div class="cell-item">{{ company.products? company.products.length: 'no products' }}</div>
-            <div class="cell-item"><a :href="company.permalink">{{ 'crunchbase link' }}</a></div>
-            <div class="cell-item">{{ company.crunchbase_url }}</div>
-            <div class="cell-item">{{ company.homepage_url }}</div>
-            <div class="cell-item">{{ company.category_code }}</div>
-            <div class="cell-item">{{ company.founded_year }}</div>
-            <div class="cell-item">{{ company.number_of_employees }}</div>
-            <div class="cell-item">{{ company.description }}</div>
-            <div class="cell-item">{{ company.updated_at }}</div>
+        <div class="grid-body"  @click="check(company.name)" :style="{ gridTemplateColumns: styleGrid }">
+            <div class="cell-item" v-for="column in filteredColumns" :key="column.name">{{ column.type === 'computed' ? company[column.name].length : company[column.name]}}</div>
             <div class="cell-item"><span class="arrow" :class="itemToExpand.includes(company.name) ? 'up' : 'down'"></span></div>
         </div>
         <transition name="smooth">
@@ -25,10 +16,11 @@ import CompanyCellContent from '@/components/Company-Cell-Content'
 export default {
   name: 'commpanies-cells',
   components: { CompanyCellContent },
-  props: ['company'],
+  props: ['company', 'columns'],
   computed: {
-    ...mapGetters(['navitems'
-    ])
+    ...mapGetters(['navitems']),
+    filteredColumns: function () { return this.columns.filter(column => column.isVisible) },
+    styleGrid: function () { return `repeat(${this.filteredColumns.length}, 1fr) 4%` }
   },
   data () {
     return {
@@ -51,14 +43,19 @@ export default {
 }
 </script>
 <style scoped lang="scss" >
+.company-cells{
+  margin: 2px 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
 .company-cells:hover{
     cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 4px -0px, rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+    margin: 1px 5px;
 }
 .grid-body{
     display: grid;
     height: 40px;
     line-height: 40px;
-    grid-template-columns: repeat(10, 1fr) 2%;
     border-bottom: 1px solid rgb(223, 223, 223);
 }
 .grid-body:hover{

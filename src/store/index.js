@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import companies from './modules/companies.js'
+import auth from './modules/auth.js'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -36,11 +37,11 @@ export default new Vuex.Store({
       } else {
         commit('isCompanies', false)
       }
-      console.log(item.name)
       commit('navitems', item)
     }
   },
   modules: {
-    companies
+    companies,
+    auth
   }
 })

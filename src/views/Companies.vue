@@ -1,7 +1,7 @@
 <template>
   <div class="companies">
     <Companies-header title="companies" :navitems="navitems"/>
-    <CompaniesGrid :companies="companies" v-if="isCompanies" />
+    <CompaniesGrid :companies="companiesPaginate" :columns="columns" v-if="isCompanies" />
   </div>
 </template>
 
@@ -21,7 +21,10 @@ export default {
   },
   computed: {
     ...mapGetters(['navitems', 'isCompanies', 'pagination']),
-    ...mapGetters('companies', { companies: 'companies' })
+    ...mapGetters('companies', { pagination: 'pagination' }),
+    ...mapGetters('companies', { columns: 'columns' }),
+    ...mapGetters('companies', { companies: 'companies' }),
+    companiesPaginate: function () { return this.companies.slice(Number(this.pagination.page - 1) * Number(this.pagination.limit), Number(this.pagination.limit) * Number(this.pagination.page)) }
     // ...mapState({ companies: state => state.companies.companies })
   },
   methods: {
