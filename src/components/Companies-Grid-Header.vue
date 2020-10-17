@@ -33,7 +33,6 @@ export default {
 <style scoped lang="scss" >
 .companies-grid-header{
     height: 40px;
-    background-color: rgb(51, 51, 51);
     display: grid;
     // grid-template-columns: repeat(10, 1fr) 4%;
 }
@@ -43,7 +42,12 @@ export default {
     font-weight: 600;
     text-align: center;
     line-height: 40px;
+    background-color: rgb(51, 51, 51);
     border-right: 1px dotted rgb(97, 97, 97);
+}
+.header-item:hover{
+    cursor: pointer;
+    background-color: rgb(75, 75, 75);
 }
 .cell-item{
     font-weight: 600;

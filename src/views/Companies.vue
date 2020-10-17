@@ -1,5 +1,10 @@
 <template>
   <div class="companies">
+    <div v-if="Object.keys(errors) > 0">
+      <div v-for="errorKey in Object.keys(errors)" :key="errorKey">
+        {{ errors[errorKey] }}
+      </div>
+    </div>
     <Companies-header title="companies" :navitems="navitems"/>
     <CompaniesGrid :companies="companiesPaginate" :columns="columns" v-if="isCompanies" />
   </div>
@@ -24,6 +29,7 @@ export default {
     ...mapGetters('companies', { pagination: 'pagination' }),
     ...mapGetters('companies', { columns: 'columns' }),
     ...mapGetters('companies', { companies: 'companies' }),
+    ...mapGetters('auth', { errors: 'errors' }),
     companiesPaginate: function () { return this.companies.slice(Number(this.pagination.page - 1) * Number(this.pagination.limit), Number(this.pagination.limit) * Number(this.pagination.page)) }
     // ...mapState({ companies: state => state.companies.companies })
   },
@@ -34,6 +40,8 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
-
+<style lang="scss" scoped>
+  .companies{
+    text-align: center;
+  }
 </style>

@@ -45,21 +45,24 @@ export default {
 <style scoped lang="scss" >
 .company-cells{
   margin: 2px 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 .company-cells:hover{
     cursor: pointer;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 4px -0px, rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
-    margin: 1px 5px;
+    margin: 4px 5px;
 }
 .grid-body{
     display: grid;
     height: 40px;
     line-height: 40px;
-    border-bottom: 1px solid rgb(223, 223, 223);
+    border-radius: 6px;
+    background: linear-gradient(145deg, #ececec, #c7c7c7);
+    box-shadow:  13px 13px 25px #bcbcbc, -13px -13px 12px #fefefe;
+    border: 1px solid rgb(223, 223, 223);
 }
-.grid-body:hover{
-    background-color: rgba(191, 223, 250, 0.616);
+ .grid-body:hover{
+    border-radius: 6px;
+    background: #ffffff;
+    box-shadow: inset 13px 13px 25px #d9d9d9, inset -13px -13px 12px #ffffff;
 }
 .header-item{
     color: white;

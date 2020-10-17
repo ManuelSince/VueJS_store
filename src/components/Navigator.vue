@@ -30,14 +30,20 @@ export default {
 <style scoped lang="scss">
 .navigator {
   li {
-    border-radius: 10px;
+    display: inline-block;
+    width: 200px;
     padding: 5px 20px;
-    border: 3px solid white;
+    margin: 2px 0px;
+    border: 1px solid white;
+    border-radius: 6px;
+    background: linear-gradient(145deg, #ececec, #c7c7c7);
+    box-shadow:  13px 13px 25px #bcbcbc, -13px -13px 25px #fefefe;
     a{
       text-decoration: none;
     }
   }
   li:hover{
+    cursor: pointer;
     a{
       color: white;
     }
@@ -54,23 +60,14 @@ ul {
   list-style-type: none;
   padding: 0;
 }
-li {
-  display: inline-block;
-  width: 300px;
-  margin: 5px 10px;
-  color:#88c8e6;
-  cursor: pointer;
-}
-li:hover{
-  border-color: #4293b9;
-}
-a {
-  color: #bfcdd3;
-}
 .active {
-  background-color: black;
+  border-radius: 6px;
+  background: #c0c0c0;
+  box-shadow: inset 9px 9px 18px #a5a5a5, inset -9px -9px 18px #dbdbdb;
+  border: 2px solid gray;
   a{
-    color: white;
+    color: rgb(108, 137, 201);
+    font-weight: 700;
   }
 }
 </style>

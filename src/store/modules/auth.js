@@ -4,13 +4,15 @@ import Tools from '../../common/Tools'
 // initial state
 const state = () => ({
   isAuthModal: '',
-  user: { lastname: 'since', firstname: 'manuel', email: 'manuelsince@gmail.com' }
+  user: {},
+  errors: {}
 })
 
 // getters
 const getters = {
   isAuthModal: (state) => state.isAuthModal,
-  user: (state) => state.user
+  user: (state) => state.user,
+  errors: (state) => state.errors
 }
 
 // mutations
@@ -23,6 +25,11 @@ const mutations = {
   },
   signup (state, payload) {
     state.user = payload
+  },
+  errors (state, payload) {
+    Object.keys(payload).forEach(key => {
+      state.errors[key] = payload[key]
+    })
   }
 }
 
@@ -32,6 +39,16 @@ const actions = {
     commit('isAuthModal', payload)
   },
   signin ({ commit }, payload) {
+    console.log('vuex/auth/sigin', payload.email + ' ' + payload.password)
+    shop.login(payload, response => {
+      if (response) {
+        console.warn(response)
+        localStorage.setItem('user', response)
+        commit('signin', response)
+      } else {
+        commit('errors', { user: 'no user found, wrong email or password' })
+      }
+    })
   },
   signup ({ commit }, payload) {
     console.log(Tools)

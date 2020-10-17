@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown">
-    <button class="dropbtn">{{user? `${user.firstname} ${user.lastname}`: login/signup }}</button>
+    <button class="dropbtn">{{user.name? `${user.firstname} ${user.lastname}`: 'signin/signup' }}</button>
     <div class="dropdown-content">
       <a href="#" @click="setIsAuthModal('in')">Sign in</a>
       <a href="#" @click="setIsAuthModal('up')">Sign up</a>
