@@ -33,7 +33,7 @@ export default {
     display: inline-block;
     width: 200px;
     padding: 5px 20px;
-    margin: 2px 0px;
+    margin: 2px 5px;
     border: 1px solid white;
     border-radius: 6px;
     background: linear-gradient(145deg, #ececec, #c7c7c7);

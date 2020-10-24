@@ -23,6 +23,7 @@ const state = () => ({
   ],
   loading: false,
   companies: [],
+  fortune500: {},
   pagination: {
     page: 1,
     limit: 50,
@@ -52,6 +53,7 @@ const getters = {
     })
     return Tools.sortedData(filteredCompanies, state.sort.name, state.sort.direction)
   },
+  fortune500: (state) => state.fortune500,
   pagination: (state) => state.pagination,
   isColumnSelection: (state) => state.isColumnSelection
 }
@@ -63,6 +65,9 @@ const mutations = {
   },
   setCompanies (state, companies) {
     state.companies = companies
+  },
+  setFortune500 (state, fortune500) {
+    state.fortune500 = fortune500
   },
   setPaginationLimit (state, payload) {
     state.pagination.limit = payload
@@ -104,6 +109,13 @@ const actions = {
     commit('setLoading', true)
     shop.getCompanies(companies => {
       commit('setCompanies', companies)
+      commit('setLoading', false)
+    })
+  },
+  getFortune500 ({ commit }) {
+    commit('setLoading', true)
+    shop.getFortune500(fortune500 => {
+      commit('setFortune500', fortune500)
       commit('setLoading', false)
     })
   },
