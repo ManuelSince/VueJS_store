@@ -1,7 +1,11 @@
 <template>
     <div class="fortune500chart">
       <h1>Fortune 500 by year</h1>
-      <div @click="restartChart" class="btn">Restart</div>
+      <div class="container center">
+        <div class="square left"></div>
+        <div @click="restartChart" class="btn">Restart</div>
+        <div class="square right"></div>
+      </div>
       <div >
           <Chart500 :d="computedData?'nice': 'bad'" :year="year" :data="dataByYear"/>
       </div>
@@ -34,10 +38,8 @@ export default {
   },
   methods: {
     display: function (year) {
-      console.log(`year is ${year} and data length is ${this.data[year].length}`)
       this.year = year
       this.dataByYear = this.data[year]
-      // return { year: year, data: dataByYear }
     },
     delay: function (param, i, delay) {
       setTimeout(() => {
@@ -56,17 +58,35 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.btn {
-  margin: 0 48%;
+.fortune500chart {
   text-align: center;
-  width: 15vh;
+}
+.btn {
+  margin: 0 50%;
+  padding: 3px 15px;
+  text-align: center;
+  width: 200px;
   border: 2px solid gray;
   border-radius: 7px;
-  cursor: pointer;
   background-color: grey;
   color: white;
 }
 .btn:hover {
-  border-color: rgb(104, 104, 168);
+  border-color: rgb(148, 148, 212);
+  background-color: rgb(182, 182, 182);
+  cursor: pointer;
+}
+.square {
+  width: 50px;
+  height: 50px;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  z-index: 999;
+}
+.left {
+  transform: rotate(90);
+}
+.right {
+
 }
 </style>

@@ -48,21 +48,21 @@ export default {
 }
 .company-cells:hover{
     cursor: pointer;
-    margin: 4px 5px;
+    // margin: 4px 5px;
 }
 .grid-body{
     display: grid;
     height: 40px;
     line-height: 40px;
     border-radius: 6px;
-    background: linear-gradient(145deg, #ececec, #c7c7c7);
-    box-shadow:  13px 13px 25px #bcbcbc, -13px -13px 12px #fefefe;
+    // background: linear-gradient(145deg, #ececec, #c7c7c7);
+    // box-shadow:  13px 13px 25px #bcbcbc, -13px -13px 12px #fefefe;
     border: 1px solid rgb(223, 223, 223);
 }
  .grid-body:hover{
-    border-radius: 6px;
-    background: #ffffff;
-    box-shadow: inset 13px 13px 25px #d9d9d9, inset -13px -13px 12px #ffffff;
+    background: #d7edee;
+    box-shadow: 10px 10px 10px #e9e9e9;
+    border: 1px dotted #c5c5c5;
 }
 .header-item{
     color: white;

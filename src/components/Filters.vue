@@ -1,8 +1,8 @@
 <template>
     <div class="filters" :style="{ gridTemplateColumns: styleGrid }">
         <div class="filter-item" v-for="column in filteredColumns" :key="column.name" >
-          <input v-if="column.type === 'text' || column.type === 'number'" :type="column.type" :placeholder="column.prettyName" v-model="Filters[column.name]">
-          <input v-if="column.type === 'computed'" :type="column.type" :placeholder="column.prettyName" v-model="ComputedFilters[column.name]">
+          <input v-if="column.type !== 'link'" :type="column.type" :placeholder="column.prettyName" v-model="Filters[column.name]">
+          <!-- <input v-if="column.type === 'computed'" :type="column.type" :placeholder="column.prettyName" v-model="ComputedFilters[column.name]"> -->
         </div>
         <div>
           <PaginatorLimit />
@@ -30,6 +30,7 @@ export default {
   },
   watch: {
     Filters: function (val) {
+      // console.log('text filter :' + val)
       this.$store.dispatch('companies/filters', val)
     },
     ComputedFilters: function (val) {

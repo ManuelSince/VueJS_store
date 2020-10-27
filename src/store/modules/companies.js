@@ -46,10 +46,19 @@ const getters = {
     const companies = state.companies
     let filteredCompanies = companies
     const filters = state.filters
+    const columns = state.columns
     console.log('page : ' + Number(state.pagination.page - 1) * Number(state.pagination.limit), 'limit :' + state.pagination.limit * state.pagination.page)
     Object.keys(filters).forEach(key => {
-      console.log(String(filteredCompanies[0][key]), typeof String(filteredCompanies[0][key]))
-      filteredCompanies = filteredCompanies.filter(company => String(company[key]).toLowerCase().startsWith(String(filters[key]).toLowerCase()))
+      // console.log(String(filteredCompanies[0][key]), typeof String(filteredCompanies[0][key]))
+      const columnsArray = columns.map(element => element.name)
+      const isEqual = (element) => element === key
+      const index = columnsArray.findIndex(isEqual)
+      if (state.columns[index].type === 'computed') { console.log("it's a computed property") } else { console.log("it's a text property") }
+      if (state.columns[index].type === 'text') {
+        filteredCompanies = filteredCompanies.filter(company => String(company[key]).toLowerCase().startsWith(String(filters[key]).toLowerCase()))
+      } else if (state.columns[index].type === 'computed' && filters[key] !== '') {
+        filteredCompanies = filteredCompanies.filter(company => company[key].length === parseInt(filters[key]))
+      }
     })
     return Tools.sortedData(filteredCompanies, state.sort.name, state.sort.direction)
   },
@@ -142,7 +151,6 @@ const actions = {
     commit('isColumnActive', columnName)
   },
   filters ({ commit }, payload) {
-    console.log(payload, typeof payload)
     commit('setFilters', payload)
   }
 }

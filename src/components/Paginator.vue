@@ -1,5 +1,5 @@
 <template>
-    <div class="paginator"> {{ companies.length }}
+    <div class="paginator container center"> {{ companies.length }}
       <div v-if="pagination.page !== 1" class="btn state-button">{{ 'previous' }}</div>
       <div v-for="value in buttons" :key="value" class="btn page-button" :class="value === pagination.page ? 'highlight': ''" @click="setPaginationPage(value)">{{ value }}</div>
       <div v-if="pagination.page !== buttons" class="btn state-button">{{ 'next' }}</div>
